@@ -4,7 +4,7 @@
 export const garageConfig = {
   name: "શક્તિ મોટર્સ & સર્વિસ સેન્ટર",
   nameEn: "Shakti Motors & Service Centre",
-  tagline: "વઢવાણ નું વિશ્વાસુ લોકલ કાર ગેરેજ — હવે Online Booking સાથે.",
+  tagline: "વઢવાણ નું વિશ્વાસુ લોકલ કાર ગેરેજ - હવે Online Booking સાથે.",
   subTagline: "કાર સર્વિસ, રિપેર, વોશિંગ, એ.સી. કામ અને ડેન્ટિંગ-પેઇન્ટિંગ — ગાડીનું બધું કામ એક જ જગ્યાએ.",
 
   // Contact Information
