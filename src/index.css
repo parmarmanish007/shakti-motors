@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+@theme {
+  --color-garage-dark: #111827;
+  --color-garage-darker: #0B0F19;
+  --color-garage-card: #1F2937;
+  --color-garage-blue: #2563EB;
+  --color-garage-blue-dark: #1D4ED8;
+  --color-garage-blue-light: #3B82F6;
+  --color-garage-orange: #F97316;
+  --color-garage-orange-hover: #EA580C;
+  --color-garage-bg: #F8FAFC;
+  --color-garage-border: #E2E8F0;
+  --color-garage-muted: #64748B;
+  --color-garage-success: #16A34A;
+  --color-garage-warning: #F59E0B;
+  --color-garage-danger: #DC2626;
+
+  --font-gujarati: "Noto Sans Gujarati", Inter, system-ui, sans-serif;
+  --font-sans: Inter, "Noto Sans Gujarati", system-ui, sans-serif;
+
+  --shadow-soft: 0 4px 20px -2px rgba(17, 24, 39, 0.06), 0 2px 6px -1px rgba(17, 24, 39, 0.04);
+  --shadow-card-hover: 0 12px 30px -4px rgba(37, 99, 235, 0.12), 0 4px 12px -2px rgba(17, 24, 39, 0.06);
+  --shadow-glow-orange: 0 4px 20px rgba(249, 115, 22, 0.35);
+  --shadow-glow-blue: 0 4px 20px rgba(37, 99, 235, 0.3);
+}
+
+/* Base resets & responsive typography */
+*, ::before, ::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--font-gujarati);
+  -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+body {
+  background-color: var(--color-garage-bg);
+  color: #1e293b;
+  overflow-x: hidden;
+  max-width: 100vw;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+img, svg, video, canvas, audio, iframe, embed, object {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Subtle custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F1F5F9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+/* Utility classes */
+.hero-pattern {
+  background-color: #111827;
+  background-image: radial-gradient(rgba(37, 99, 235, 0.15) 1px, transparent 1px), radial-gradient(rgba(249, 115, 22, 0.1) 1px, #111827 1px);
+  background-size: 40px 40px;
+  background-position: 0 0, 20px 20px;
+}
+
+/* Safe area padding for mobile bottom bar */
+.safe-area-pb {
+  padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.25s ease-out forwards;
+}
+
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spinSlow 4s linear infinite;
+}
