@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { garageConfig, getPhoneCallUrl, getWhatsAppUrl } from '../data/config';
 import SectionTitle from '../components/SectionTitle';
 import Button from '../components/Button';
-import { 
-  Phone, 
-  MessageCircle, 
-  MapPin, 
-  Clock, 
-  Send, 
-  CheckCircle2, 
+import {
+  Phone,
+  MessageCircle,
+  MapPin,
+  Clock,
+  Send,
+  CheckCircle2,
   Navigation,
   CalendarCheck
 } from 'lucide-react';
@@ -30,7 +30,7 @@ export default function Contact() {
 
   return (
     <div className="space-y-12 sm:space-y-16 pb-16">
-      
+
       {/* Header Banner */}
       <section className="bg-garage-dark text-white py-10 sm:py-14 px-3.5 sm:px-6 lg:px-8 border-b border-slate-800 relative hero-pattern">
         <div className="max-w-4xl mx-auto text-center space-y-3 sm:space-y-4">
@@ -48,12 +48,12 @@ export default function Contact() {
 
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8">
-        
+
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
-          
+
           {/* Left: Contact Info Cards (5 cols) */}
           <div className="lg:col-span-5 space-y-4 sm:space-y-6">
-            
+
             {/* Phone Card */}
             <div className="bg-white rounded-2xl p-4 sm:p-6 border border-slate-200 shadow-soft flex items-start gap-3 sm:gap-4">
               <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-blue-50 text-garage-blue flex items-center justify-center shrink-0">
@@ -156,7 +156,7 @@ export default function Contact() {
 
           {/* Right: Quick Inquiry Form & Map Mock (7 cols) */}
           <div className="lg:col-span-7 space-y-6 sm:space-y-8">
-            
+
             {/* Quick Inquiry Form */}
             <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 lg:p-10 border border-slate-200 shadow-soft">
               <div className="border-b border-slate-100 pb-3.5 sm:pb-4 mb-4 sm:mb-6">
@@ -196,7 +196,7 @@ export default function Contact() {
                       </label>
                       <input
                         type="text"
-                        placeholder="રાજેશભાઈ પટેલ"
+                        placeholder="નિતીનભાઈ પરમાર"
                         value={inquiryForm.name}
                         onChange={(e) => setInquiryForm({ ...inquiryForm, name: e.target.value })}
                         className="w-full text-xs sm:text-sm px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-garage-blue font-gujarati"

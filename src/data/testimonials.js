@@ -4,7 +4,7 @@
 export const testimonials = [
   {
     id: 1,
-    name: "રાજેશભાઈ પટેલ",
+    name: "નિતીનભાઈ પરમાર",
     location: "વઢવાણ (GIDC રોડ)",
     car: "Maruti Suzuki WagonR",
     serviceUsed: "જનરલ સર્વિસ + વોશિંગ",

@@ -5,17 +5,17 @@ import { saveNewBooking } from '../data/mockBookings';
 import { garageConfig, getPhoneCallUrl, getWhatsAppUrl } from '../data/config';
 import Button from '../components/Button';
 import SectionTitle from '../components/SectionTitle';
-import { 
-  User, 
-  Phone, 
-  Car, 
-  Wrench, 
-  Calendar, 
-  Clock, 
-  FileText, 
-  CheckCircle2, 
-  AlertCircle, 
-  ChevronRight, 
+import {
+  User,
+  Phone,
+  Car,
+  Wrench,
+  Calendar,
+  Clock,
+  FileText,
+  CheckCircle2,
+  AlertCircle,
+  ChevronRight,
   ChevronLeft,
   ArrowRight,
   ArrowLeft,
@@ -154,7 +154,7 @@ export default function Booking() {
 
   return (
     <div className="space-y-12 pb-16">
-      
+
       {/* Page Header */}
       <section className="bg-garage-dark text-white py-10 sm:py-12 px-3.5 sm:px-6 lg:px-8 border-b border-slate-800 hero-pattern">
         <div className="max-w-4xl mx-auto text-center space-y-2 sm:space-y-3">
@@ -172,16 +172,15 @@ export default function Booking() {
 
       {/* Main Container */}
       <div className="max-w-3xl mx-auto px-3.5 sm:px-6 lg:px-8">
-        
+
         {/* Step Indicator */}
         <div className="bg-white rounded-2xl p-3 sm:p-6 border border-slate-200 shadow-soft mb-6 sm:mb-8">
           <div className="grid grid-cols-4 gap-1.5 sm:gap-2 text-center font-gujarati text-[11px] sm:text-xs">
-            
+
             {/* Step 1 Pill */}
             <div className={`flex flex-col items-center gap-1 ${step >= 1 ? 'text-garage-blue font-bold' : 'text-slate-400'}`}>
-              <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs font-bold transition-colors ${
-                step > 1 ? 'bg-emerald-600 text-white' : step === 1 ? 'bg-garage-blue text-white shadow-glow-blue' : 'bg-slate-100 text-slate-400'
-              }`}>
+              <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs font-bold transition-colors ${step > 1 ? 'bg-emerald-600 text-white' : step === 1 ? 'bg-garage-blue text-white shadow-glow-blue' : 'bg-slate-100 text-slate-400'
+                }`}>
                 {step > 1 ? '✓' : '1'}
               </div>
               <span className="hidden sm:inline">1. ગ્રાહકની વિગત</span>
@@ -190,9 +189,8 @@ export default function Booking() {
 
             {/* Step 2 Pill */}
             <div className={`flex flex-col items-center gap-1 ${step >= 2 ? 'text-garage-blue font-bold' : 'text-slate-400'}`}>
-              <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs font-bold transition-colors ${
-                step > 2 ? 'bg-emerald-600 text-white' : step === 2 ? 'bg-garage-blue text-white shadow-glow-blue' : 'bg-slate-100 text-slate-400'
-              }`}>
+              <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs font-bold transition-colors ${step > 2 ? 'bg-emerald-600 text-white' : step === 2 ? 'bg-garage-blue text-white shadow-glow-blue' : 'bg-slate-100 text-slate-400'
+                }`}>
                 {step > 2 ? '✓' : '2'}
               </div>
               <span className="hidden sm:inline">2. ગાડીની વિગત</span>
@@ -201,9 +199,8 @@ export default function Booking() {
 
             {/* Step 3 Pill */}
             <div className={`flex flex-col items-center gap-1 ${step >= 3 ? 'text-garage-blue font-bold' : 'text-slate-400'}`}>
-              <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs font-bold transition-colors ${
-                step > 3 ? 'bg-emerald-600 text-white' : step === 3 ? 'bg-garage-blue text-white shadow-glow-blue' : 'bg-slate-100 text-slate-400'
-              }`}>
+              <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs font-bold transition-colors ${step > 3 ? 'bg-emerald-600 text-white' : step === 3 ? 'bg-garage-blue text-white shadow-glow-blue' : 'bg-slate-100 text-slate-400'
+                }`}>
                 {step > 3 ? '✓' : '3'}
               </div>
               <span className="hidden sm:inline">3. સર્વિસ & સમય</span>
@@ -212,9 +209,8 @@ export default function Booking() {
 
             {/* Step 4 Pill */}
             <div className={`flex flex-col items-center gap-1 ${step === 4 ? 'text-garage-orange font-bold' : 'text-slate-400'}`}>
-              <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs font-bold transition-colors ${
-                step === 4 ? 'bg-garage-orange text-white shadow-glow-orange' : 'bg-slate-100 text-slate-400'
-              }`}>
+              <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs font-bold transition-colors ${step === 4 ? 'bg-garage-orange text-white shadow-glow-orange' : 'bg-slate-100 text-slate-400'
+                }`}>
                 4
               </div>
               <span className="hidden sm:inline">4. કન્ફર્મેશન</span>
@@ -226,9 +222,9 @@ export default function Booking() {
 
         {/* Form Container */}
         <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 lg:p-10 border border-slate-200 shadow-soft">
-          
+
           <form onSubmit={handleSubmit} className="space-y-6">
-            
+
             {/* STEP 1: Customer Details */}
             {step === 1 && (
               <div className="space-y-5 animate-fadeIn">
@@ -249,12 +245,11 @@ export default function Booking() {
                   </label>
                   <input
                     type="text"
-                    placeholder="દા.ત. રાજેશભાઈ પટેલ"
+                    placeholder="દા.ત. નિતીનભાઈ પરમાર"
                     value={formData.customerName}
                     onChange={(e) => setFormData({ ...formData, customerName: e.target.value })}
-                    className={`w-full text-sm px-4 py-3 rounded-xl border ${
-                      errors.customerName ? 'border-red-400 bg-red-50/30' : 'border-slate-200'
-                    } focus:outline-none focus:ring-2 focus:ring-garage-blue font-gujarati`}
+                    className={`w-full text-sm px-4 py-3 rounded-xl border ${errors.customerName ? 'border-red-400 bg-red-50/30' : 'border-slate-200'
+                      } focus:outline-none focus:ring-2 focus:ring-garage-blue font-gujarati`}
                   />
                   {errors.customerName && (
                     <p className="text-xs text-red-600 font-gujarati mt-1">{errors.customerName}</p>
@@ -276,9 +271,8 @@ export default function Booking() {
                       maxLength="10"
                       value={formData.mobile}
                       onChange={(e) => setFormData({ ...formData, mobile: e.target.value.replace(/\D/g, '') })}
-                      className={`w-full pl-14 pr-4 py-3 text-sm rounded-xl border ${
-                        errors.mobile ? 'border-red-400 bg-red-50/30' : 'border-slate-200'
-                      } focus:outline-none focus:ring-2 focus:ring-garage-blue font-sans`}
+                      className={`w-full pl-14 pr-4 py-3 text-sm rounded-xl border ${errors.mobile ? 'border-red-400 bg-red-50/30' : 'border-slate-200'
+                        } focus:outline-none focus:ring-2 focus:ring-garage-blue font-sans`}
                     />
                   </div>
                   {errors.mobile && (
@@ -355,9 +349,8 @@ export default function Booking() {
                     placeholder="દા.ત. Swift VXI, i20 Magna, Nexon XZ..."
                     value={formData.carModel}
                     onChange={(e) => setFormData({ ...formData, carModel: e.target.value })}
-                    className={`w-full text-sm px-4 py-3 rounded-xl border ${
-                      errors.carModel ? 'border-red-400 bg-red-50/30' : 'border-slate-200'
-                    } focus:outline-none focus:ring-2 focus:ring-garage-blue font-gujarati`}
+                    className={`w-full text-sm px-4 py-3 rounded-xl border ${errors.carModel ? 'border-red-400 bg-red-50/30' : 'border-slate-200'
+                      } focus:outline-none focus:ring-2 focus:ring-garage-blue font-gujarati`}
                   />
                   {errors.carModel && (
                     <p className="text-xs text-red-600 font-gujarati mt-1">{errors.carModel}</p>
@@ -446,9 +439,8 @@ export default function Booking() {
                       type="date"
                       value={formData.preferredDate}
                       onChange={(e) => setFormData({ ...formData, preferredDate: e.target.value })}
-                      className={`w-full text-sm px-4 py-3 rounded-xl border ${
-                        errors.preferredDate ? 'border-red-400 bg-red-50/30' : 'border-slate-200'
-                      } focus:outline-none focus:ring-2 focus:ring-garage-blue font-sans`}
+                      className={`w-full text-sm px-4 py-3 rounded-xl border ${errors.preferredDate ? 'border-red-400 bg-red-50/30' : 'border-slate-200'
+                        } focus:outline-none focus:ring-2 focus:ring-garage-blue font-sans`}
                     />
                     {errors.preferredDate && (
                       <p className="text-xs text-red-600 font-gujarati mt-1">{errors.preferredDate}</p>

@@ -79,7 +79,7 @@ export const TRACKING_STEPS = [
 export const INITIAL_MOCK_BOOKINGS = [
   {
     bookingId: "SM-1024",
-    customerName: "રાજેશભાઈ પટેલ (Rajesh Patel)",
+    customerName: "નિતીનભાઈ પરમાર (Rajesh Patel)",
     mobile: "9825012345",
     car: "Maruti Swift (GJ-01-AB-1234)",
     service: "જનરલ કાર સર્વિસ + વોશિંગ",
@@ -159,7 +159,7 @@ export const getAllBookings = () => {
 export const saveNewBooking = (bookingData) => {
   const all = getAllBookings();
   const newBookingId = `SM-${Math.floor(1000 + Math.random() * 9000)}`;
-  
+
   const formattedBooking = {
     bookingId: newBookingId,
     customerName: bookingData.customerName || "Customer",
@@ -194,8 +194,8 @@ export const findBooking = (query) => {
   if (!query) return null;
   const cleanQuery = query.trim().toLowerCase();
   const all = getAllBookings();
-  
-  return all.find(b => 
+
+  return all.find(b =>
     b.bookingId.toLowerCase() === cleanQuery ||
     b.mobile.replace(/\D/g, '').includes(cleanQuery.replace(/\D/g, '')) ||
     (b.car && b.car.toLowerCase().includes(cleanQuery))

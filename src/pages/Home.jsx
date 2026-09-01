@@ -223,7 +223,7 @@ export default function Home() {
                     </label>
                     <input
                       type="text"
-                      placeholder="દા.ત. રાજેશભાઈ પટેલ"
+                      placeholder="દા.ત. નિતીનભાઈ પરમાર"
                       value={quickForm.customerName}
                       onChange={(e) => setQuickForm({ ...quickForm, customerName: e.target.value })}
                       className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 font-gujarati transition-colors"

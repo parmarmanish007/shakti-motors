@@ -17,7 +17,7 @@ import {
 
 export default function About() {
   const founder = {
-    name: "નીતિન પરમાર",
+    name: "નિતીન પરમાર",
     designation: "સંસ્થાપક & હેડ મિકેનિક (Founder & Head Mechanic)",
     role: "10+ વર્ષ અનુભવ",
     specialty: "Engine Diagnostic, Overall Car Health & Workshop Management",

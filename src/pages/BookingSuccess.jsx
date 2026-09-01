@@ -2,18 +2,18 @@ import React, { useState } from 'react';
 import { useLocation, Link, Navigate } from 'react-router-dom';
 import { garageConfig, getWhatsAppUrl, getPhoneCallUrl } from '../data/config';
 import Button from '../components/Button';
-import { 
-  CheckCircle2, 
-  Calendar, 
-  Clock, 
-  Car, 
-  Wrench, 
-  Copy, 
-  Check, 
-  MessageCircle, 
-  ArrowRight, 
-  Home, 
-  Phone, 
+import {
+  CheckCircle2,
+  Calendar,
+  Clock,
+  Car,
+  Wrench,
+  Copy,
+  Check,
+  MessageCircle,
+  ArrowRight,
+  Home,
+  Phone,
   Activity,
   ShieldCheck
 } from 'lucide-react';
@@ -21,11 +21,11 @@ import {
 export default function BookingSuccess() {
   const location = useLocation();
   const [copied, setCopied] = useState(false);
-  
+
   // Fallback demo booking if user navigated directly
   const booking = location.state?.booking || {
     bookingId: "SM-1024",
-    customerName: "રાજેશભાઈ પટેલ",
+    customerName: "નિતીનભાઈ પરમાર",
     mobile: "9033972706",
     car: "Maruti Swift",
     service: "જનરલ કાર સર્વિસ + વોશિંગ",
@@ -43,9 +43,9 @@ export default function BookingSuccess() {
 
   return (
     <div className="max-w-3xl mx-auto px-3.5 sm:px-6 lg:px-8 py-8 sm:py-16">
-      
+
       <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-10 lg:p-12 border border-slate-200 shadow-xl text-center space-y-6 sm:space-y-8 animate-fadeIn">
-        
+
         {/* Big Success Icon */}
         <div className="w-20 h-20 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto shadow-inner border border-emerald-200">
           <CheckCircle2 className="w-12 h-12" />
@@ -116,7 +116,7 @@ export default function BookingSuccess() {
 
         {/* Action Buttons Grid */}
         <div className="pt-2 grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-md mx-auto">
-          
+
           <a
             href={getWhatsAppUrl(whatsAppMsg)}
             target="_blank"
