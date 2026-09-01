@@ -4,7 +4,7 @@
 
 A clean, modern, and trustworthy Gujarati local garage website for **શક્તિ મોટર્સ (Shakti Motors) — Wadhwan, Surendranagar**, focused on everyday car services (Maruti Swift, WagonR, Baleno, Alto, Dzire, i20, Creta, Bolero, Nexon), transparent pricing, and direct appointment booking.
 
-> **Local Brand Identity**: *"Wadhwanનું trusted local car garage — કામ સરસ, રેટ reasonable, અને વાત clear."*
+> **Local Brand Identity**: *"Wadhwan નું trusted local car garage — કામ સરસ, રેટ reasonable, અને વાત clear."*
 
 ---
 

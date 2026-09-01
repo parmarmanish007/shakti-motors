@@ -150,7 +150,7 @@ export default function Home() {
               {/* Conversational Gujarati Subtitle */}
               <p className="text-xs sm:text-base lg:text-lg text-slate-300 font-gujarati leading-relaxed max-w-2xl mx-auto lg:mx-0">
                 {garageConfig.tagline} <br className="hidden sm:inline" />
-                <span className="text-amber-400 font-semibold block sm:inline mt-1 sm:mt-0">"કામ સરસ, રેટ reasonable, અને વાત clear."</span>
+                <span className="text-amber-400 font-semibold block sm:inline mt-1 sm:mt-0">"કામ સરસ, ભાવ વાજબી અને વાત એકદમ સ્પષ્ટ.."</span>
               </p>
 
               {/* Hero Action Buttons */}
