@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { garageConfig, getPhoneCallUrl, getWhatsAppUrl } from '../data/config';
+import { sendInquiryToGoogleSheets } from '../utils/googleSheets';
 import SectionTitle from '../components/SectionTitle';
 import Button from '../components/Button';
 import {
@@ -17,6 +18,7 @@ export default function Contact() {
   const [inquiryForm, setInquiryForm] = useState({
     name: '',
     mobile: '',
+    phone: '',
     car: '',
     message: ''
   });
@@ -25,6 +27,7 @@ export default function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    sendInquiryToGoogleSheets(inquiryForm);
     setSubmitted(true);
   };
 

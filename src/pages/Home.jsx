@@ -4,6 +4,7 @@ import { garageConfig, getPhoneCallUrl, getWhatsAppUrl } from '../data/config';
 import { services } from '../data/services';
 import { testimonials } from '../data/testimonials';
 import { saveNewBooking } from '../data/mockBookings';
+import { sendBookingToGoogleSheets } from '../utils/googleSheets';
 import ServiceCard from '../components/ServiceCard';
 import SectionTitle from '../components/SectionTitle';
 import Button from '../components/Button';
@@ -24,7 +25,9 @@ import {
   FileText,
   ChevronRight,
   Paintbrush,
-  Check
+  Check,
+  CheckCircle,
+  RotateCcw
 } from 'lucide-react';
 
 export default function Home() {
@@ -36,19 +39,19 @@ export default function Home() {
     mobile: '',
     carModel: '',
     serviceName: 'Car Service (રેગ્યુલર કાર સર્વિસ)',
-    preferredDate: '',
-    preferredTime: 'સવારે ૧૦:૦૦',
     problemNote: ''
   });
   const [formError, setFormError] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [quickConfirmed, setQuickConfirmed] = useState(null);
 
-  const handleQuickSubmit = (e) => {
+  const handleQuickSubmit = async (e) => {
     e.preventDefault();
     if (!quickForm.customerName.trim()) {
       setFormError('કૃપા કરીને તમારું નામ લખો.');
       return;
     }
-    if (!quickForm.mobile.trim() || quickForm.mobile.length < 10) {
+    if (!quickForm.mobile.trim() || quickForm.mobile.replace(/\D/g, '').length < 10) {
       setFormError('કૃપા કરીને માન્ય ૧૦ આંકડાનો મોબાઈલ નંબર લખો.');
       return;
     }
@@ -58,19 +61,49 @@ export default function Home() {
     }
 
     setFormError('');
-    const newBooking = saveNewBooking({
-      customerName: quickForm.customerName,
-      mobile: quickForm.mobile,
-      carModel: quickForm.carModel,
-      carBrand: '',
-      carNumber: 'Quick Booking',
-      serviceName: quickForm.serviceName,
-      date: quickForm.preferredDate || 'શક્ય તેટલું વહેલું',
-      time: quickForm.preferredTime,
-      problemNote: quickForm.problemNote
-    });
+    setIsSubmitting(true);
 
-    navigate('/booking-success', { state: { booking: newBooking } });
+    // Only send what user filled in the quick form; everything else stays blank
+    const bookingPayload = {
+      customerName: quickForm.customerName.trim(),
+      mobile: quickForm.mobile.trim(),
+      whatsapp: quickForm.mobile.trim(),
+      carBrand: '',
+      carModel: quickForm.carModel.trim(),
+      carNumber: '',
+      fuelType: '',
+      serviceName: quickForm.serviceName || '',
+      date: '',
+      time: '',
+      problemNote: quickForm.problemNote ? quickForm.problemNote.trim() : ''
+    };
+
+    const saved = saveNewBooking(bookingPayload);
+
+    const completeBooking = {
+      ...bookingPayload,
+      ...saved,
+      carBrand: '',
+      carModel: quickForm.carModel.trim(),
+      serviceName: quickForm.serviceName || ''
+    };
+
+    // Send to Google Sheets
+    await sendBookingToGoogleSheets({ ...completeBooking });
+
+    setIsSubmitting(false);
+    setQuickConfirmed(completeBooking);
+  };
+
+  const handleResetQuickForm = () => {
+    setQuickConfirmed(null);
+    setQuickForm({
+      customerName: '',
+      mobile: '',
+      carModel: '',
+      serviceName: 'Car Service (રેગ્યુલર કાર સર્વિસ)',
+      problemNote: ''
+    });
   };
 
   // 4 Featured Real Work Showcase Cards
@@ -215,100 +248,176 @@ export default function Home() {
                   </div>
                 )}
 
-                <form onSubmit={handleQuickSubmit} className="space-y-3">
-                  {/* Name */}
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-700 font-gujarati mb-1">
-                      તમારું નામ (Name) *
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="દા.ત. નિતીનભાઈ પરમાર"
-                      value={quickForm.customerName}
-                      onChange={(e) => setQuickForm({ ...quickForm, customerName: e.target.value })}
-                      className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 font-gujarati transition-colors"
-                      required
-                    />
-                  </div>
-
-                  {/* Mobile & Car Model */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div>
-                      <label className="block text-xs font-semibold text-slate-700 font-gujarati mb-1">
-                        મોબાઈલ નંબર *
-                      </label>
-                      <input
-                        type="tel"
-                        placeholder="98XXXXXXXX"
-                        maxLength="10"
-                        value={quickForm.mobile}
-                        onChange={(e) => setQuickForm({ ...quickForm, mobile: e.target.value })}
-                        className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 font-sans transition-colors"
-                        required
-                      />
+                {quickConfirmed ? (
+                  <div className="space-y-4 text-center py-2 animate-fadeIn font-gujarati">
+                    <div className="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto ring-4 ring-emerald-50">
+                      <CheckCircle className="w-8 h-8 text-emerald-600" />
                     </div>
+
+                    <div>
+                      <span className="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200 uppercase">
+                        Booking Confirm થયું છે ✅
+                      </span>
+                      <h3 className="text-xl font-black text-slate-900 mt-2">
+                        તમારી અપોઇન્ટમેન્ટ નોંધાઈ ગઈ છે!
+                      </h3>
+                      <p className="text-xs text-slate-500 mt-1">
+                        શક્તિ મોટર્સની ટીમ કન્ફર્મેશન માટે ટૂંક સમયમાં તમને કૉલ કરશે.
+                      </p>
+                    </div>
+
+                    {/* Summary Ticket with Booking ID */}
+                    <div className="bg-slate-50 rounded-2xl p-4 border border-slate-200 text-left text-xs space-y-2 text-slate-700">
+                      {/* Booking ID Header Tag */}
+                      <div className="flex items-center justify-between bg-emerald-50/90 border border-emerald-200/80 rounded-xl px-3 py-2 -mt-0.5 mb-2.5">
+                        <span className="text-[11px] font-bold text-emerald-800 font-gujarati flex items-center gap-1.5">
+                          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                          Booking ID:
+                        </span>
+                        <strong className="text-xs sm:text-sm font-black text-emerald-950 font-sans tracking-wide">
+                          #{quickConfirmed.bookingId}
+                        </strong>
+                      </div>
+
+                      <div className="flex justify-between border-b border-slate-200/80 pb-1.5">
+                        <span className="text-slate-400">ગ્રાહક:</span>
+                        <strong className="text-slate-900">{quickConfirmed.customerName}</strong>
+                      </div>
+                      <div className="flex justify-between border-b border-slate-200/80 pb-1.5">
+                        <span className="text-slate-400">મોબાઈલ:</span>
+                        <strong className="text-slate-900 font-sans">{quickConfirmed.mobile}</strong>
+                      </div>
+                      <div className="flex justify-between border-b border-slate-200/80 pb-1.5">
+                        <span className="text-slate-400">ગાડી:</span>
+                        <strong className="text-slate-900">{quickConfirmed.carModel}</strong>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-slate-400">સર્વિસ:</span>
+                        <strong className="text-garage-blue">{quickConfirmed.serviceName}</strong>
+                      </div>
+                    </div>
+
+                    {/* Action Buttons */}
+                    <div className="space-y-2 pt-1">
+                      <a
+                        href={getWhatsAppUrl(`નમસ્તે શક્તિ મોટર્સ,\nમેં ઓનલાઇન કાર સર્વિસ બુક કરી છે:\n• Booking ID: #${quickConfirmed.bookingId}\n• નામ: ${quickConfirmed.customerName}\n• મોબાઈલ: ${quickConfirmed.mobile}\n• ગાડી: ${quickConfirmed.carModel}\n• સર્વિસ: ${quickConfirmed.serviceName}`)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-b from-[#22C55E] via-[#16A34A] to-[#15803D] hover:from-[#4ADE80] text-white font-bold py-2.5 px-4 rounded-xl shadow-sm text-xs transition-all active:translate-y-[1px]"
+                      >
+                        <MessageCircle className="w-4 h-4" />
+                        <span>WhatsApp પર વિગતો મોકલો</span>
+                      </a>
+
+                      <div className="pt-2">
+                        <button
+                          type="button"
+                          onClick={handleResetQuickForm}
+                          className="text-garage-blue hover:underline font-bold text-xs flex items-center justify-center gap-1 mx-auto"
+                        >
+                          <RotateCcw className="w-3.5 h-3.5" />
+                          <span>બીજું નવું Booking કરો</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <form onSubmit={handleQuickSubmit} className="space-y-3">
+                    {/* Name */}
                     <div>
                       <label className="block text-xs font-semibold text-slate-700 font-gujarati mb-1">
-                        ગાડી મોડેલ *
+                        તમારું નામ (Name) *
                       </label>
                       <input
                         type="text"
-                        placeholder="Swift, WagonR, i20..."
-                        value={quickForm.carModel}
-                        onChange={(e) => setQuickForm({ ...quickForm, carModel: e.target.value })}
+                        placeholder="દા.ત. નિતીનભાઈ પરમાર"
+                        value={quickForm.customerName}
+                        onChange={(e) => setQuickForm({ ...quickForm, customerName: e.target.value })}
                         className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 font-gujarati transition-colors"
                         required
                       />
                     </div>
-                  </div>
 
-                  {/* Service Type Select */}
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-700 font-gujarati mb-1">
-                      કઈ સર્વિસ કરાવવી છે?
-                    </label>
-                    <select
-                      value={quickForm.serviceName}
-                      onChange={(e) => setQuickForm({ ...quickForm, serviceName: e.target.value })}
-                      className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 font-gujarati bg-white transition-colors"
+                    {/* Mobile & Car Model */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <div>
+                        <label className="block text-xs font-semibold text-slate-700 font-gujarati mb-1">
+                          મોબાઈલ નંબર *
+                        </label>
+                        <input
+                          type="tel"
+                          placeholder="98XXXXXXXX"
+                          maxLength="10"
+                          value={quickForm.mobile}
+                          onChange={(e) => setQuickForm({ ...quickForm, mobile: e.target.value.replace(/\D/g, '') })}
+                          className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 font-sans transition-colors"
+                          required
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-xs font-semibold text-slate-700 font-gujarati mb-1">
+                          ગાડી મોડેલ *
+                        </label>
+                        <input
+                          type="text"
+                          placeholder="Swift, WagonR, i20..."
+                          value={quickForm.carModel}
+                          onChange={(e) => setQuickForm({ ...quickForm, carModel: e.target.value })}
+                          className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 font-gujarati transition-colors"
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    {/* Service Type Select */}
+                    <div>
+                      <label className="block text-xs font-semibold text-slate-700 font-gujarati mb-1">
+                        કઈ સર્વિસ કરાવવી છે?
+                      </label>
+                      <select
+                        value={quickForm.serviceName}
+                        onChange={(e) => setQuickForm({ ...quickForm, serviceName: e.target.value })}
+                        className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 font-gujarati bg-white transition-colors"
+                      >
+                        {services.map((s) => (
+                          <option key={s.id} value={`${s.title} (${s.gujaratiTitle})`}>
+                            {s.title} — {s.gujaratiTitle}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+
+                    {/* Problem Note */}
+                    <div>
+                      <label className="block text-xs font-semibold text-slate-700 font-gujarati mb-1">
+                        કોઈ ખાસ પ્રોબ્લેમ? (Optional)
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="દા.ત. AC ઓછું ઠંડુ થાય છે, બ્રેક અવાજ કરે છે..."
+                        value={quickForm.problemNote}
+                        onChange={(e) => setQuickForm({ ...quickForm, problemNote: e.target.value })}
+                        className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 font-gujarati transition-colors"
+                      />
+                    </div>
+
+                    {/* Submit Button */}
+                    <Button
+                      type="submit"
+                      variant="orange"
+                      size="lg"
+                      fullWidth
+                      disabled={isSubmitting}
+                      className="mt-2 font-gujarati font-semibold text-sm sm:text-base shadow-sm"
                     >
-                      {services.map((s) => (
-                        <option key={s.id} value={`${s.title} (${s.gujaratiTitle})`}>
-                          {s.title} — {s.gujaratiTitle}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
+                      {isSubmitting ? 'Booking થઈ રહ્યું છે...' : 'Booking Confirm કરો'}
+                    </Button>
 
-                  {/* Problem Note */}
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-700 font-gujarati mb-1">
-                      કોઈ ખાસ પ્રોબ્લેમ? (Optional)
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="દા.ત. AC ઓછું ઠંડુ થાય છે, બ્રેક અવાજ કરે છે..."
-                      value={quickForm.problemNote}
-                      onChange={(e) => setQuickForm({ ...quickForm, problemNote: e.target.value })}
-                      className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 font-gujarati transition-colors"
-                    />
-                  </div>
-
-                  {/* Submit Button */}
-                  <Button
-                    type="submit"
-                    variant="orange"
-                    size="lg"
-                    fullWidth
-                    className="mt-2 font-gujarati font-semibold text-sm sm:text-base shadow-sm"
-                  >
-                    Booking Confirm કરો
-                  </Button>
-
-                  <p className="text-[11px] text-center text-slate-500 font-gujarati pt-1">
-                    બુકિંગ સબમિટ કર્યા પછી અમારી ટીમ તમને કન્ફર્મેશન માટે કૉલ/WhatsApp કરશે.
-                  </p>
-                </form>
+                    <p className="text-[11px] text-center text-slate-500 font-gujarati pt-1">
+                      બુકિંગ સબમિટ કર્યા પછી અમારી ટીમ તમને કન્ફર્મેશન માટે કૉલ/WhatsApp કરશે.
+                    </p>
+                  </form>
+                )}
 
               </div>
             </div>

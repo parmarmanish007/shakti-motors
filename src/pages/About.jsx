@@ -69,6 +69,15 @@ export default function About() {
       initials: "GL",
       color: "from-cyan-600 to-blue-800",
       icon: Sparkles
+    },
+    {
+      name: "જયદીપ મોટકીયા",
+      role: "સર્વિસ આસિસ્ટન્ટ & ક્લિનિંગ",
+      exp: "૧+ વર્ષ અનુભવ",
+      specialty: "ઇન્ટિરિયર વેક્યૂમિંગ, કાર વોશિંગ અને ટાયર-બેટરી કેર",
+      initials: "JM",
+      color: "from-violet-600 to-purple-800",
+      icon: Sparkles
     }
   ];
 
@@ -183,7 +192,7 @@ export default function About() {
         />
 
         {/* 1. FOUNDER & HEAD MECHANIC CARD */}
-        <div className="max-w-xl mx-auto">
+        <div className="max-w-lg mx-auto mb-8 sm:mb-12">
           <div className="bg-white rounded-3xl border-2 border-orange-300/80 p-6 sm:p-8 shadow-md text-center space-y-4 hover:shadow-lg transition-all relative overflow-hidden">
             {/* Top Badge */}
             <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-orange-50 border border-orange-200 text-orange-600 text-xs font-bold font-gujarati">
@@ -218,41 +227,41 @@ export default function About() {
           </div>
         </div>
 
-        {/* 2. BALANCED 4-COLUMN MECHANICS GRID */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+        {/* 2. BALANCED 5-COLUMN MECHANICS GRID */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3.5 sm:gap-4">
           {mechanics.map((member, i) => {
             const IconComponent = member.icon;
             return (
               <div
                 key={i}
-                className="bg-white rounded-2xl border border-slate-200/90 p-5 sm:p-6 shadow-xs hover:shadow-md hover:border-slate-300 transition-all flex flex-col justify-between text-center space-y-4"
+                className="bg-white rounded-2xl border border-slate-200/90 p-4 sm:p-5 shadow-xs hover:shadow-md hover:border-slate-300 transition-all flex flex-col justify-between text-center space-y-3"
               >
-                <div className="space-y-3">
+                <div className="space-y-2.5">
                   {/* Distinct Avatar with Icon Accent */}
                   <div className="relative inline-block">
-                    <div className={`w-14 h-14 rounded-2xl bg-gradient-to-tr ${member.color} text-white font-black text-lg flex items-center justify-center mx-auto shadow-md font-sans`}>
+                    <div className={`w-13 h-13 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-tr ${member.color} text-white font-black text-base sm:text-lg flex items-center justify-center mx-auto shadow-md font-sans`}>
                       {member.initials}
                     </div>
-                    <div className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-white text-slate-700 shadow-sm border border-slate-200 flex items-center justify-center">
-                      <IconComponent className="w-3.5 h-3.5 text-orange-500" />
+                    <div className="absolute -bottom-1 -right-1 w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-white text-slate-700 shadow-sm border border-slate-200 flex items-center justify-center">
+                      <IconComponent className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-orange-500" />
                     </div>
                   </div>
 
                   <div>
-                    <h3 className="text-base font-bold text-slate-900 font-gujarati">
+                    <h3 className="text-sm sm:text-base font-bold text-slate-900 font-gujarati">
                       {member.name}
                     </h3>
-                    <p className="text-xs font-bold text-orange-600 font-gujarati mt-0.5">
+                    <p className="text-[11px] sm:text-xs font-bold text-orange-600 font-gujarati mt-0.5">
                       {member.role}
                     </p>
-                    <span className="inline-block text-[11px] text-slate-400 font-gujarati mt-0.5">
+                    <span className="inline-block text-[10px] sm:text-[11px] text-slate-400 font-gujarati mt-0.5">
                       {member.exp}
                     </span>
                   </div>
                 </div>
 
                 {/* Specific Specialty Description */}
-                <p className="text-xs text-slate-600 font-gujarati leading-relaxed bg-slate-50 p-3 rounded-xl border border-slate-100">
+                <p className="text-[11px] sm:text-xs text-slate-600 font-gujarati leading-relaxed bg-slate-50 p-2.5 sm:p-3 rounded-xl border border-slate-100 break-words">
                   {member.specialty}
                 </p>
               </div>

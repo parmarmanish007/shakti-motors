@@ -14,6 +14,10 @@ export const garageConfig = {
   whatsappRaw: "919033972706",
   email: "parmarnitin151099@gmail.com",
 
+  // Google Sheets Apps Script Web App Deployment URL
+  // Replace with your deployed Web App URL: https://script.google.com/macros/s/AKfycb.../exec
+  googleScriptUrl: "https://script.google.com/macros/s/AKfycbwfkBz02KpLL5NOPCdgcV7S_2bXSIjCly5lTtOHyCXaDHKF3ORvFzDAg7oUrf4QuKfE/exec",
+
   // Exact Google Maps Address & Location - Kothariya / Wadhwan, Surendranagar
   shopNo: "શોપ નં. ૧",
   landmark: "નેક્સા શોરૂમ સામે (Opposite Nexa Showroom)",
