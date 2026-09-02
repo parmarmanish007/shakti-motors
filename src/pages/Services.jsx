@@ -3,6 +3,7 @@ import { services } from '../data/services';
 import ServiceCard from '../components/ServiceCard';
 import SectionTitle from '../components/SectionTitle';
 import Button from '../components/Button';
+import CarBrandsMarquee from '../components/CarBrandsMarquee';
 import { garageConfig, getWhatsAppUrl, getPhoneCallUrl } from '../data/config';
 import { Search, Filter, Phone, MessageCircle, HelpCircle, CheckCircle2, ChevronDown } from 'lucide-react';
 
@@ -138,6 +139,17 @@ export default function Services() {
           </div>
         )}
 
+      </div>
+
+      {/* Supported Car Brands Moving Marquee */}
+      <div className="pt-4">
+        <div className="max-w-7xl mx-auto px-4 mb-2 flex items-center justify-between text-xs text-slate-500 font-gujarati">
+          <span className="font-bold text-slate-700 text-[11px] sm:text-xs">
+            અમે આ તમામ કાર બ્રાન્ડ્સની સર્વિસ કરીએ છીએ:
+          </span>
+          <span className="hidden sm:inline text-slate-400 text-[11px]">All Car Brands Supported</span>
+        </div>
+        <CarBrandsMarquee />
       </div>
 
       {/* FAQ Section */}

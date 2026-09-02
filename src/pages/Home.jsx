@@ -8,6 +8,7 @@ import { sendBookingToGoogleSheets } from '../utils/googleSheets';
 import ServiceCard from '../components/ServiceCard';
 import SectionTitle from '../components/SectionTitle';
 import Button from '../components/Button';
+import CarBrandsMarquee from '../components/CarBrandsMarquee';
 import {
   Wrench,
   CalendarCheck,
@@ -151,10 +152,10 @@ export default function Home() {
   ];
 
   return (
-    <div className="space-y-16 sm:space-y-24 pb-12">
+    <div className="pb-16">
 
       {/* 1. HERO SECTION */}
-      <section className="relative bg-garage-dark text-white overflow-hidden hero-pattern pt-8 pb-14 sm:pt-12 sm:pb-20 lg:pt-16 lg:pb-28 border-b border-slate-800">
+      <section className="relative bg-garage-dark text-white overflow-hidden hero-pattern pt-8 pb-0 sm:pt-12 sm:pb-0 lg:pt-14 lg:pb-0 border-b border-slate-800">
 
         {/* Ambient background glow */}
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[280px] sm:w-[450px] lg:w-[550px] h-[200px] sm:h-[300px] bg-blue-600/15 rounded-full blur-3xl pointer-events-none" />
@@ -424,10 +425,27 @@ export default function Home() {
 
           </div>
         </div>
+
+        {/* Single Line Continuous Moving Car Brand Logos inside Hero */}
+        <div className="mt-8 sm:mt-12 bg-[#0B1220]/60 pt-2.5">
+          <div className="max-w-7xl mx-auto px-4 mb-2.5 flex items-center justify-between text-xs text-slate-300 font-gujarati">
+            <span className="flex items-center gap-2 font-bold text-white text-xs sm:text-sm">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              અમે આ તમામ કંપનીઓની ગાડીઓનું કામ કરીએ છીએ:
+            </span>
+            <span className="hidden sm:inline text-[#94A3B8] text-xs font-semibold">
+              ૧૦૦% ઓરિજિનલ સ્પેરપાર્ટ્સ & સ્કેનિંગ
+            </span>
+          </div>
+          <CarBrandsMarquee />
+        </div>
       </section>
 
-      {/* 2. REAL GARAGE WORK SHOWCASE ("આપણે કયા કામ કરીએ છીએ?") */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* BODY CONTENT CONTAINER (Seamless Transition with zero awkward gaps) */}
+      <div className="space-y-16 sm:space-y-24 pt-10 sm:pt-14">
+
+        {/* 2. REAL GARAGE WORK SHOWCASE ("આપણે કયા કામ કરીએ છીએ?") */}
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle
           badge="અમારે ત્યાં આ બધું કામ થાય છે"
           title="ગાડીનું જે કામ હોય, અમારે ત્યાં થઈ જાય."
@@ -812,6 +830,7 @@ export default function Home() {
         </div>
       </section>
 
+      </div>
     </div>
   );
 }
