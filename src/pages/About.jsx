@@ -37,7 +37,7 @@ export default function About() {
     {
       name: "ભવાની પરમાર",
       role: "ઇલેક્ટ્રિકલ & AC સ્પેશિયાલિસ્ટ",
-      exp: "૮+ વર્ષ અનુભવ",
+      exp: "૬+ વર્ષ અનુભવ",
       specialty: "વાયરિંગ, OBD સ્કેનર ફોલ્ટ્સ, AC કૂલિંગ સિસ્ટમ અને સેન્સર કામ",
       initials: "BP",
       color: "from-blue-600 to-indigo-700",
