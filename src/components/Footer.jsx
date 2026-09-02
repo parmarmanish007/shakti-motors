@@ -2,14 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { garageConfig, getPhoneCallUrl, getWhatsAppUrl } from '../data/config';
 import { services } from '../data/services';
-import { 
-  Wrench, 
-  Phone, 
-  MessageCircle, 
-  MapPin, 
-  Clock, 
-  ShieldCheck, 
-  HeartHandshake, 
+import {
+  Wrench,
+  Phone,
+  MessageCircle,
+  MapPin,
+  Clock,
+  ShieldCheck,
+  HeartHandshake,
   ChevronRight,
   Sparkles,
   Navigation
@@ -19,7 +19,7 @@ export default function Footer() {
   return (
     <footer className="bg-garage-darker text-slate-400 pt-12 sm:pt-16 pb-28 md:pb-12 border-t border-slate-800">
       <div className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8">
-        
+
         {/* Top Trust Banner */}
         <div className="bg-slate-900/90 rounded-2xl p-4 sm:p-8 border border-slate-800 mb-8 sm:mb-12 shadow-inner">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 text-center md:text-left">
@@ -57,7 +57,7 @@ export default function Footer() {
 
         {/* Main 4-Column Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 mb-8 sm:mb-12">
-          
+
           {/* Col 1: Brand & Philosophy */}
           <div className="space-y-4">
             <Link to="/" className="flex items-center gap-3">
@@ -192,7 +192,7 @@ export default function Footer() {
                     allowFullScreen
                     referrerPolicy="no-referrer-when-downgrade"
                   />
-                  
+
                   {/* Quick Map Link overlay */}
                   <a
                     href={garageConfig.googleMapsUrl}

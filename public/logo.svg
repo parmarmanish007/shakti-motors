@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 96" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <!-- Premium Orange Gradient for SHAKTI -->
+    <linearGradient id="shaktiGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FB923C" />
+      <stop offset="40%" stop-color="#F97316" />
+      <stop offset="100%" stop-color="#EA580C" />
+    </linearGradient>
+
+    <!-- Warm Gold-Orange Speed Streak -->
+    <linearGradient id="goldSpeedGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FBBF24" />
+      <stop offset="45%" stop-color="#F59E0B" />
+      <stop offset="100%" stop-color="#EA580C" />
+    </linearGradient>
+
+    <!-- Red-Orange Lower Speed Accent -->
+    <linearGradient id="redAccentGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#EA580C" />
+      <stop offset="60%" stop-color="#EF4444" />
+      <stop offset="100%" stop-color="#DC2626" />
+    </linearGradient>
+
+    <!-- Subtle Drop Glow -->
+    <filter id="logoGlow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="1.5" stdDeviation="1.5" flood-color="#F97316" flood-opacity="0.2" />
+    </filter>
+  </defs>
+
+  <!-- ========================================================================= -->
+  <!-- CAR SILHOUETTE (Sleek aerodynamic curvature from Shakti Motors photo)     -->
+  <!-- ========================================================================= -->
+  <g id="car-silhouette" filter="url(#logoGlow)">
+    <!-- Main Top Roofline & Hood Contour (White for dark background) -->
+    <path
+      d="M 16 38
+         C 12 34, 14 27, 22 27
+         L 48 26
+         C 76 23, 112 14, 155 10
+         C 200 6, 252 12, 305 23
+         C 334 29, 360 33, 372 34
+         C 348 32, 318 27, 285 21
+         C 238 14, 192 11, 150 14
+         C 106 17, 72 24, 42 30
+         C 28 33, 20 37, 16 38 Z"
+      fill="#FFFFFF"
+    />
+
+    <!-- Rear Downward Spoiler Wing -->
+    <path
+      d="M 22 27
+         C 15 29, 10 34, 11 42
+         C 14 43, 19 40, 24 35
+         C 20 33, 17 30, 22 27 Z"
+      fill="#FFFFFF"
+    />
+
+    <!-- Upper Yellow/Gold Window Swoosh -->
+    <path
+      d="M 125 21
+         C 162 14, 200 14, 238 20
+         C 214 18, 172 17, 138 22
+         C 132 23, 128 22, 125 21 Z"
+      fill="url(#goldSpeedGrad)"
+    />
+
+    <!-- Middle Orange Speed Line -->
+    <path
+      d="M 90 29
+         C 152 22, 228 21, 305 28
+         C 250 25, 182 25, 110 30
+         C 100 31, 94 30, 90 29 Z"
+      fill="url(#shaktiGrad)"
+    />
+
+    <!-- Lower Red Accent Line -->
+    <path
+      d="M 115 35
+         C 168 32, 225 32, 280 36
+         C 230 34, 178 34, 126 37
+         C 120 37, 116 36, 115 35 Z"
+      fill="url(#redAccentGrad)"
+    />
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- TYPOGRAPHY: "SHAKTI MOTORS" & "& SERVICE CENTRE"                          -->
+  <!-- ========================================================================= -->
+  <g id="brand-typography">
+    <!-- "SHAKTI" - Bold, Modern, High-Impact Orange -->
+    <text
+      x="15"
+      y="68"
+      font-family="'Montserrat', 'Outfit', 'Arial Black', 'Impact', sans-serif"
+      font-size="34"
+      font-weight="900"
+      letter-spacing="0.5"
+      fill="url(#shaktiGrad)"
+    >
+      SHAKTI
+    </text>
+
+    <!-- "MOTORS" - Crisp Bold White -->
+    <text
+      x="162"
+      y="68"
+      font-family="'Montserrat', 'Outfit', 'Arial Black', 'Impact', sans-serif"
+      font-size="34"
+      font-weight="900"
+      letter-spacing="0.5"
+      fill="#FFFFFF"
+    >
+      MOTORS
+    </text>
+
+    <!-- "& SERVICE CENTRE" - Clean Tracking Under MOTORS -->
+    <text
+      x="164"
+      y="86"
+      font-family="'Montserrat', 'Outfit', 'Arial Black', sans-serif"
+      font-size="13"
+      font-weight="800"
+      letter-spacing="2.5"
+      fill="url(#shaktiGrad)"
+    >
+      &amp; SERVICE CENTRE
+    </text>
+  </g>
+</svg>

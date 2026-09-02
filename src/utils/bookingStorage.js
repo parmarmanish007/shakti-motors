@@ -1,12 +1,12 @@
 // Centralized localStorage manager for Shakti Motors appointments and bookings
 // Phase 07 Deliverable: Keeps storage logic clean and modular
 
-import { 
-  getAllBookings, 
-  saveNewBooking, 
-  findBooking, 
-  INITIAL_MOCK_BOOKINGS, 
-  STATUS_MAP 
+import {
+  getAllBookings,
+  saveNewBooking,
+  findBooking,
+  INITIAL_MOCK_BOOKINGS,
+  STATUS_MAP
 } from '../data/mockBookings';
 
 export const bookingStorage = {

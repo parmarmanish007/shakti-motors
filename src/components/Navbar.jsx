@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { garageConfig, getPhoneCallUrl } from '../data/config';
-import { 
-  Menu, 
-  X, 
-  Phone, 
-  CalendarCheck, 
-  Wrench, 
-  Compass, 
-  Info, 
-  PhoneCall, 
+import BrandLogo from './BrandLogo';
+import {
+  Menu,
+  X,
+  Phone,
+  CalendarCheck,
+  Wrench,
+  Compass,
+  Info,
+  PhoneCall,
   Activity,
   ShieldCheck
 } from 'lucide-react';
@@ -42,11 +43,10 @@ export default function Navbar() {
   ];
 
   return (
-    <header className={`sticky top-0 z-40 transition-all duration-300 ${
-      scrolled 
-        ? 'bg-garage-dark/95 backdrop-blur-md shadow-lg border-b border-slate-800' 
-        : 'bg-garage-dark border-b border-slate-800'
-    }`}>
+    <header className={`sticky top-0 z-40 transition-all duration-300 ${scrolled
+      ? 'bg-garage-dark/95 backdrop-blur-md shadow-lg border-b border-slate-800'
+      : 'bg-garage-dark border-b border-slate-800'
+      }`}>
       {/* Top micro bar for quick business info */}
       <div className="hidden lg:block bg-garage-darker text-slate-400 text-xs py-1.5 px-4 border-b border-slate-800/80">
         <div className="max-w-7xl mx-auto flex items-center justify-between font-gujarati">
@@ -74,25 +74,10 @@ export default function Navbar() {
       {/* Main Navbar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          
-          {/* Brand Logo */}
-          <Link to="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-xl bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition-all">
-              <Wrench className="w-5 h-5" />
-            </div>
-            <div>
-              <div className="flex items-baseline gap-2">
-                <span className="text-xl font-bold tracking-tight text-white font-gujarati">
-                  {garageConfig.name}
-                </span>
-                <span className="text-[11px] font-medium text-slate-400 font-sans tracking-wide">
-                  WADHWAN
-                </span>
-              </div>
-              <p className="text-[11px] text-slate-400 font-gujarati">
-                લોકલ કાર સર્વિસ & રીપેરીંગ
-              </p>
-            </div>
+
+          {/* Official Shakti Motors Brand Logo */}
+          <Link to="/" className="flex items-center group py-1">
+            <BrandLogo size="md" light={false} />
           </Link>
 
           {/* Desktop Navigation Links */}
@@ -102,10 +87,9 @@ export default function Navbar() {
                 key={link.path}
                 to={link.path}
                 className={({ isActive }) =>
-                  `px-3.5 py-2 rounded-lg text-sm font-medium transition-colors relative font-gujarati ${
-                    isActive
-                      ? 'text-white bg-slate-800/80 font-semibold'
-                      : 'text-slate-300 hover:text-white hover:bg-slate-800/40'
+                  `px-3.5 py-2 rounded-lg text-sm font-medium transition-colors relative font-gujarati ${isActive
+                    ? 'text-white bg-slate-800/80 font-semibold'
+                    : 'text-slate-300 hover:text-white hover:bg-slate-800/40'
                   }`
                 }
               >
@@ -151,7 +135,7 @@ export default function Navbar() {
               <CalendarCheck className="w-3.5 h-3.5" />
               <span>Booking</span>
             </Link>
-            
+
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="w-9 h-9 rounded-[7px] bg-gradient-to-b from-[#334155] via-[#1E293B] to-[#0F172A] text-slate-200 flex items-center justify-center hover:text-white border-t border-t-[#64748B] border-b-2 border-b-[#020617] shadow-xs transition-colors focus:outline-none"
@@ -178,10 +162,9 @@ export default function Navbar() {
                 key={link.path}
                 to={link.path}
                 className={({ isActive }) =>
-                  `flex items-center justify-between px-4 py-3 rounded-lg text-sm font-medium font-gujarati transition-colors ${
-                    isActive
-                      ? 'bg-gradient-to-b from-[#3B82F6] via-[#2563EB] to-[#1D4ED8] text-white font-bold border-t border-t-[#BFDBFE]/80 border-b-2 border-b-[#1E3A8A] shadow-xs'
-                      : 'text-slate-200 hover:bg-slate-800/80'
+                  `flex items-center justify-between px-4 py-3 rounded-lg text-sm font-medium font-gujarati transition-colors ${isActive
+                    ? 'bg-gradient-to-b from-[#3B82F6] via-[#2563EB] to-[#1D4ED8] text-white font-bold border-t border-t-[#BFDBFE]/80 border-b-2 border-b-[#1E3A8A] shadow-xs'
+                    : 'text-slate-200 hover:bg-slate-800/80'
                   }`
                 }
               >

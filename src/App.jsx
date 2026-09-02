@@ -33,7 +33,7 @@ export default function App() {
     <BrowserRouter>
       <ScrollToTop />
       <div className="flex flex-col min-h-screen bg-garage-bg text-slate-800 font-gujarati antialiased selection:bg-garage-blue selection:text-white">
-        
+
         {/* Sticky Navbar */}
         <Navbar />
 
